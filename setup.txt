@@ -1,0 +1,57 @@
+config.xml
+unique id: com.dataletix.appname
+version: 0.0.1
+app name
+app description
+author email: support@dataletix.com
+author website: http://www.dataletix.com
+
+src\config.json
+unique id: com.dataletix.appname
+app name
+version: 0.0.1
+version code: similar to version eg: 1
+"siteurl": "",
+"privacypolicy": "None",
+theme-color: eg:[#910b2e]
+
+
+package.json
+name
+version
+description
+author name
+author email
+
+src\theme\bmma.scss
+$mod-color: #910b2e;
+$tabs-background: $mod-color !default;
+$core-color: $mod-color;
+$core-color-init-screen: $mod-color !default;
+$core-color-init-screen-alt: $mod-color !default;
+
+src\assets\lang\en.json
+"core.cannotconnect": "Cannot connect: Verify that you have correctly typed the URL and that your site uses Moodle 2.4 or later.",
+"core.login.checksiteversion": "Check that your site uses Moodle 2.4 or later.",
+"core.course.activitynotyetviewablesiteupgradeneeded": "Your organisation's Moodle installation needs to be updated."
+"core.course.askadmintosupport": "Contact the site administrator and tell them you want to use this activity with the Moodle Mobile app.",
+"core.login.connecttomoodle": "Connect to Moodle",
+"core.login.connecttomoodleapp": "You are trying to connect to a regular Moodle site. Please download the official Moodle app to access this site.",
+"core.login.connecttoworkplaceapp": "You are trying to connect to a Moodle Workplace site. Please download the Moodle Workplace app to access this site.",
+"core.login.erroraccesscontrolalloworigin": "The cross-origin call you're trying to perform has been rejected. Please check https://docs.moodle.org/dev/Moodle_Mobile_development_using_Chrome_or_Chromium",
+"core.login.helpmelogin": "<p>There are many thousands of Moodle sites around the world. This app can only connect to Moodle sites that have specifically enabled Mobile app access.</p><p>If you can't connect to your Moodle site then you need to contact your site administrator and ask them to read <a href=\"http://docs.moodle.org/en/Mobile_app\" target=\"_blank\">http://docs.moodle.org/en/Mobile_app</a></p><p>To test the app in a Moodle demo site type <i>teacher</i> or <i>student</i> in the <i>Site address</i> field and click the <b>Connect button</b>.</p>",
+"core.login.invalidmoodleversion": "Invalid Moodle version. The minimum version required is 2.4.",
+"core.login.legacymoodleversion": "You are trying to connect to an unsupported Moodle version. Please download the Moodle Classic app to access this Moodle site.",
+"core.login.legacymoodleversiondesktop": "You are trying to connect to <b>{{$a}}</b>.<br><br>This site is running an outdated unsupported version of Moodle which will not work with this Moodle Desktop App.<br><br>If this is your site please contact your local moodle partner to get assistance to update it.<br><br>See <a href=\"https://moodle.com/contact\">our contact page</a> to submit a request for assistance.",
+"core.login.newsitedescription": "Please enter the URL of your Moodle site. Note that it might not be configured to work with this app.",
+"core.login.siteurlrequired": "Site URL required i.e <i>http://www.yourmoodlesite.org</i>",
+"assets.mimetypes.application/vnd.moodle.backup": "Moodle backup",
+
+change all resource files in resources\android
+
+cmd 
+nvm install 11.12.0
+nvm use 11.12.0
+npm cache clean #This may give an error, ignore it.
+ionic cordova platform add android@7.1.2
+ionic cordova prepare android
