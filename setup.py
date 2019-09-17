@@ -92,6 +92,22 @@ class Setup():
             ans = input('> ')
 
             if(ans == "1"):
+                print("")
+                print("Would you like to reset the project files? (recommended)")
+                print("The following files will be affected:")
+                print("config.xml")
+                print('src/config.json')
+                print('package.json')
+                print('google-services.json')
+                while(True):
+                    y = input('(Y/n) > ')
+
+                    if(y.lower() == "y" or y.lower() == "yes"):
+                        self.reset_project()
+                        break
+                    elif(y.lower() == "n" or y.lower() == "no"):
+                        break
+
                 app_name = input(f'App Name ({self.app_name}): ')
                 unique_id = input(f'App Unique ID ({self.unique_id}): ')
                 version = input(f'App Version ({self.version}): ')
