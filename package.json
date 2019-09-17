@@ -1,9 +1,9 @@
 {
     "name": "testapp",
     "version": "0.0.1",
-    "description": "Official app provided by HANA.",
+    "description": "Official app provided by Hana.",
     "author": {
-        "name": "Test Mobile Team",
+        "name": "Hana Mobile Team",
         "email": "support@hana.com"
     },
     "config": {

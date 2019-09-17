@@ -4,20 +4,21 @@ from os import fdopen, remove
 import os
 import subprocess
 import json
+import re
 
 class Setup():
     def __init__(self):
         self.meta_data = []
-        self.app_name = 'HANA APP'
+        self.app_name = 'Hana App'
         self.unique_id = 'com.hana.app'
         self.version = '0.0.1'
         self.version_code = '1'
-        self.app_description = 'Official app provided by HANA.'
+        self.app_description = 'Official app provided by Hana.'
         self.theme_color = '#ffff'
-        self.author_name = "HANA Mobile Team"
+        self.author_name = "Hana Mobile Team"
         self.author_email = "support@hana.com"
         self.author_website = "http://www.hanainc.com"
-        self.site_url = "themes.dataletix.com"
+        self.site_url = "moodlesite.hana.com"
         self.privacy_policy = 'none'
 
         self.meta_data.append(self.app_name)
@@ -87,6 +88,7 @@ class Setup():
             print("Please select one of the following options:")
             print("[1] Setup a new build.")
             print("[2] Recompile this build.")
+            print("[3] Reset Project to default settings.")
             ans = input('> ')
 
             if(ans == "1"):
@@ -115,29 +117,42 @@ class Setup():
                 self.set_meta_data(privacy_policy, 10)
 
                 self.controller()
+
+                print('')
+                print('[Notice] If any errors occured then open an issue on the github repository: https://github.com/dr-nyt/dataletix_moodlemobile2/issues')
+                print('[Notice] If no errors occured then you can now find your android project in platforms/android folder. Open it in Android Studio and enjoy!')
+                input('> ')
                 break
             
             elif(ans == "2"):
                 os.system('ionic cordova prepare android')
+
+                print('')
+                print('[Notice] If any errors occured then open an issue on the github repository: https://github.com/dr-nyt/dataletix_moodlemobile2/issues')
+                print('[Notice] If no errors occured then you can now find your android project in platforms/android folder. Open it in Android Studio and enjoy!')
+                input('> ')
                 break
-            
+
+            elif(ans == "3"):
+                self.reset_project()
+                print("[NOTICE] Reset complete!")
+                
             else:
+                print("[Error] Invalid choice!")
                 continue
-        
-        print('If any errors occured then open an issue on the github repository: https://github.com/dr-nyt/dataletix_moodlemobile2/issues')
-        print('')
-        print('If no errors occured then you can now find your android project in platforms/android folder. Open it in Android Studio and enjoy!')
-        print('')
-        input('> ')
 
     def controller(self):
         self.set_meta_data('meta_data', 'set')
 
-        print('')
-        print('You may now optionally change the in-app text, or leave it empty to keep it default:')
-        print('')
+        while(True):
+            ans = input('Would you like to change the in-app texts related to moodle? (y/n): ')
 
-        self.lang_replacement()
+            if(ans == "y" or ans == "yes"):
+                self.lang_replacement()
+                break
+
+            elif(ans == 'n' or ans == "no"):
+                break
 
         self.config_xml()
         self.config_json()
@@ -177,6 +192,23 @@ class Setup():
             if(rep != ""):
                 self.temp_langs[i] = rep
     
+    def reset_project(self):
+        print('[Notice] Preparing files...')
+        self.reset_file('config.xml')
+        print('[Notice] Reset config.xml')
+        self.reset_file('src/config.json')
+        print('[Notice] Reset config.json')
+        self.reset_file('package.json')
+        print('[Notice] Reset package.json')
+        self.reset_file('google-services.json')
+        print('[Notice] Reset google-services.json')
+
+    def reset_file(self, filePath):
+        with open('script/backup/' + filePath, "r", encoding="utf8") as f:
+            data = f.read()
+        with open(filePath, "w", encoding="utf8") as f:
+            f.write(re.sub(r"<string>ABC</string>(\s+)<string>(.*)</string>", r"<xyz>ABC</xyz>\1<xyz>\2</xyz>", data))
+
     def config_xml(self):
         self.replace('config.xml', "com.moodle.moodlemobile", self.unique_id)
         self.replace('config.xml', "3.7.1", self.version)
@@ -197,7 +229,6 @@ class Setup():
         self.replace_JSON('src/config.json', "statusbarbgios", self.theme_color)
         self.replace_JSON('src/config.json', "statusbarbgandroid", self.theme_color)
         self.replace_JSON('src/config.json', "appname", self.app_name)
-
         print("[Notice] Configured config.json!")
 
     def bmma_scss(self):

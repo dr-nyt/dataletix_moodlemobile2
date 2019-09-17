@@ -1,6 +1,6 @@
 {
-    "app_id": "com.hana.app",
-    "appname": "HANA APP",
+    "app_id": "com.hana.test",
+    "appname": "Test App",
     "desktopappname": "Moodle Desktop",
     "versioncode": 1,
     "versionname": "0.0.1",
@@ -56,14 +56,25 @@
     },
     "wsservice": "moodle_mobile_app",
     "wsextservice": "local_mobile",
-    "demo_sites": {},
+    "demo_sites": {
+        "student": {
+            "url": "https://school.moodledemo.net",
+            "username": "student",
+            "password": "moodle"
+        },
+        "teacher": {
+            "url": "https://school.moodledemo.net",
+            "username": "teacher",
+            "password": "moodle"
+        }
+    },
     "font_sizes": [
         62.5,
         75.89,
         93.75
     ],
     "customurlscheme": "moodlemobile",
-    "siteurl": "themes.dataletix.com",
+    "siteurl": "moodlesite.hana.com",
     "sitename": "",
     "multisitesdisplay": "",
     "skipssoconfirmation": false,
